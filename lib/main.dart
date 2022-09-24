@@ -19,6 +19,12 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primaryColor: AppColors.primaryGreen,
         fontFamily: 'Quicksand',
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
+          },
+        ),
       ),
       routeInformationParser: goRouter.routeInformationParser,
       routeInformationProvider: goRouter.routeInformationProvider,

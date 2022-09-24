@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        margin: margin ?? const EdgeInsets.symmetric(horizontal: 15),
+        margin: margin,
         duration: const Duration(milliseconds: 600),
         alignment: Alignment.center,
         padding: padding ?? const EdgeInsets.symmetric(vertical: 12),
@@ -43,7 +43,7 @@ class CustomButton extends StatelessWidget {
           style: titleStyle ??
               Theme.of(context).textTheme.subtitle1?.copyWith(
                     color: AppColors.primaryGreen,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
         ),
       ),

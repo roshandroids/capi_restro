@@ -1,2 +1,2 @@
-export 'auth_screen/auth.dart';
+export 'auth_screen/auth_screen.dart';
 export 'landing_screen/landing.dart';

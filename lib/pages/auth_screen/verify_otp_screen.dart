@@ -2,19 +2,21 @@ import 'package:capi_restro/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class VerifyOtpScreen extends StatefulWidget {
+  const VerifyOtpScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  late TextEditingController _emailController;
+class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+  late OtpFieldController _pinController;
   @override
   void initState() {
-    _emailController = TextEditingController();
+    _pinController = OtpFieldController();
     super.initState();
   }
 
@@ -29,7 +31,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.goNamed(RoutePaths.landingRoute.routeName),
+          onPressed: () =>
+              context.goNamed(RoutePaths.forgetpasswordRoute.routeName),
           icon: const Icon(
             Ionicons.chevron_back_outline,
             color: AppColors.iconBlack,
@@ -51,7 +54,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Forgot Password?',
+                'Verify your Mobile',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline5?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -60,7 +63,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Retrieve Your Password',
+                'Enter your OTP code here',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -68,32 +71,28 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     ),
               ),
               const SizedBox(height: 10),
-              CustomTextField(
-                controller: _emailController,
-                hintText: 'Email',
-                validator: (value) => Validators.emailValidator(value),
-                keyboardType: TextInputType.emailAddress,
+              OTPTextField(
+                length: 4,
+                controller: _pinController,
+                width: MediaQuery.of(context).size.width / 1.6,
+                textFieldAlignment: MainAxisAlignment.spaceAround,
+                fieldStyle: FieldStyle.underline,
+                onCompleted: (pin) {},
+                onChanged: (pin) {},
               ),
               const SizedBox(height: 30),
               CustomButton(
-                title: 'Submit',
+                title: 'Verify Now',
                 btnColor: AppColors.primaryGreen,
                 titleStyle: Theme.of(context).textTheme.subtitle1?.copyWith(
                       color: AppColors.surfaceWhite,
                       fontWeight: FontWeight.w600,
                     ),
-                onTap: () => context.go(RoutePaths.verifytotpRoute.path),
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
   }
 }

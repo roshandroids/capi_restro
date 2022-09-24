@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late bool _showPassword;
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.goNamed(RoutePaths.landingRoute.routeName),
+          onPressed: () => context.go(RoutePaths.loginRoute.path),
           icon: const Icon(
             Ionicons.chevron_back_outline,
             color: AppColors.iconBlack,
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Sign in to continue',
+                'Sign up to continue',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -99,24 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: AppColors.borderGrey,
                     )),
               ),
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () =>
-                      context.goNamed(RoutePaths.forgetpasswordRoute.routeName),
-                  child: Text(
-                    'Forgot Password?',
-                    style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.primaryGreen,
-                        ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 25),
               CustomButton(
-                title: 'Login',
+                title: 'Sign up',
                 btnColor: AppColors.primaryGreen,
                 titleStyle: Theme.of(context).textTheme.subtitle1?.copyWith(
                       color: AppColors.surfaceWhite,
@@ -128,20 +113,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'New to Capi Restaurant? ',
+                      text: 'Already have an account? ',
                       style: Theme.of(context).textTheme.subtitle1?.copyWith(
                             color: AppColors.borderGrey,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
                     TextSpan(
-                      text: 'Signup',
+                      text: 'Login',
                       style: Theme.of(context).textTheme.subtitle1?.copyWith(
                             color: AppColors.primaryGreen,
                             fontWeight: FontWeight.w600,
                           ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => context.go(RoutePaths.signupRoute.path),
+                        ..onTap = () => context.go(RoutePaths.loginRoute.path),
                     ),
                   ],
                 ),

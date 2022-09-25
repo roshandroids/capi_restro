@@ -2,21 +2,21 @@ import 'package:capi_restro/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
 
-class VerifyOtpScreen extends StatefulWidget {
-  const VerifyOtpScreen({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  late OtpFieldController _pinController;
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  late TextEditingController _passwordController;
+  late TextEditingController _confirmPasswordController;
   @override
   void initState() {
-    _pinController = OtpFieldController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
     super.initState();
   }
 
@@ -31,8 +31,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () =>
-              context.goNamed(RoutePaths.forgetpasswordRoute.routeName),
+          onPressed: () => context.pop(),
           icon: const Icon(
             Ionicons.chevron_back_outline,
             color: AppColors.iconBlack,
@@ -51,10 +50,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'Verify your Mobile',
+                'Change your password',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headline5?.copyWith(
                       fontWeight: FontWeight.bold,
@@ -63,7 +61,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
               const SizedBox(height: 10),
               Text(
-                'Enter your OTP code here',
+                'Set your new password',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.subtitle1?.copyWith(
                       fontWeight: FontWeight.w600,
@@ -71,28 +69,43 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     ),
               ),
               const SizedBox(height: 10),
-              OTPTextField(
-                length: 4,
-                controller: _pinController,
-                width: MediaQuery.of(context).size.width / 1.6,
-                textFieldAlignment: MainAxisAlignment.spaceAround,
-                fieldStyle: FieldStyle.underline,
-                onCompleted: (pin) {},
-                onChanged: (pin) {},
+              CustomTextField(
+                controller: _passwordController,
+                hintText: 'New Password',
+                validator: Validators.passwordValidator,
+                keyboardType: TextInputType.text,
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                controller: _confirmPasswordController,
+                hintText: 'Confirm Password',
+                validator: (value) => Validators.passwordValidator(
+                  _passwordController.text,
+                  confirmValue: value,
+                ),
+                keyboardType: TextInputType.text,
               ),
               const SizedBox(height: 30),
               CustomButton(
-                title: 'Verify Now',
+                title: 'Submit',
                 btnColor: AppColors.primaryGreen,
                 titleStyle: Theme.of(context).textTheme.subtitle1?.copyWith(
                       color: AppColors.surfaceWhite,
                       fontWeight: FontWeight.w600,
                     ),
+                onTap: () => context.go(RoutePaths.loginRoute.path),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }

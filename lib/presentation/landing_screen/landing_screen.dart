@@ -1,5 +1,5 @@
 import 'package:capi_restro/core/core.dart';
-import 'package:capi_restro/pages/landing_screen/widgets/page_view_widget.dart';
+import 'package:capi_restro/presentation/landing_screen/widgets/page_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -15,7 +15,7 @@ class _LandingScreenState extends State<LandingScreen> {
   late PageController _controller;
   double pageOffset = 0;
 
-  final List<Map<String, dynamic>> pageViewItems = [
+  final List<Map<String, String>> pageViewItems = [
     {
       'title': 'Quick search',
       'content': 'Set your location to start exploring restaurants around you',
@@ -71,7 +71,7 @@ class _LandingScreenState extends State<LandingScreen> {
               title: 'Login',
               margin: const EdgeInsets.symmetric(horizontal: 20),
               onTap: () {
-                context.go(RoutePaths.loginRoute.path);
+                context.push(RoutePaths.loginRoute.path);
               },
             ),
             const SizedBox(height: 30),
@@ -79,7 +79,6 @@ class _LandingScreenState extends State<LandingScreen> {
               controller: _controller, // PageController
               count: pageViewItems.length,
               effect: WormEffect(
-                paintStyle: PaintingStyle.fill,
                 offset: 1,
                 dotColor: AppColors.surfaceWhite.withOpacity(.7),
                 activeDotColor: AppColors.surfaceWhite,

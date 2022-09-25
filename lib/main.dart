@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends ConsumerWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,12 +19,12 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         primaryColor: AppColors.primaryGreen,
         fontFamily: 'Quicksand',
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
-          },
-        ),
+        // pageTransitionsTheme: const PageTransitionsTheme(
+        //   builders: {
+        //     TargetPlatform.android: ZoomPageTransitionsBuilder(),
+        //     TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
+        //   },
+        // ),
       ),
       routeInformationParser: goRouter.routeInformationParser,
       routeInformationProvider: goRouter.routeInformationProvider,

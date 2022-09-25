@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     this.titleStyle,
     this.margin,
     this.padding,
-    this.isLoading,
+    this.isLoading = false,
     this.width,
     this.borderRadius,
   });
@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
   final TextStyle? titleStyle;
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
-  final bool? isLoading;
+  final bool isLoading;
   final double? width;
   final double? borderRadius;
 
@@ -36,16 +36,29 @@ class CustomButton extends StatelessWidget {
         padding: padding ?? const EdgeInsets.symmetric(vertical: 12),
         width: width ?? size.width,
         decoration: BoxDecoration(
-            color: btnColor ?? AppColors.surfaceWhite,
-            borderRadius: BorderRadius.circular(borderRadius ?? 4)),
-        child: Text(
-          title,
-          style: titleStyle ??
-              Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: AppColors.primaryGreen,
-                    fontWeight: FontWeight.w600,
-                  ),
+          color: btnColor ?? AppColors.surfaceWhite,
+          borderRadius: BorderRadius.circular(borderRadius ?? 4),
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 1),
+              blurRadius: 10,
+              color: AppColors.borderGrey,
+            ),
+          ],
         ),
+        child: isLoading
+            ? const CircularProgressIndicator(
+                strokeWidth: 2,
+                color: AppColors.surfaceWhite,
+              )
+            : Text(
+                title,
+                style: titleStyle ??
+                    Theme.of(context).textTheme.subtitle1?.copyWith(
+                          color: AppColors.primaryGreen,
+                          fontWeight: FontWeight.w600,
+                        ),
+              ),
       ),
     );
   }

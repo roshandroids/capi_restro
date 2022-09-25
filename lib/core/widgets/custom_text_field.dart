@@ -48,13 +48,18 @@ class CustomTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: hintStyle ??
                 Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: AppColors.borderGrey, fontWeight: FontWeight.w600),
+                      color: AppColors.borderGrey,
+                      fontWeight: FontWeight.w600,
+                    ),
             labelText: labelText,
             labelStyle: labelStyle ??
                 Theme.of(context).textTheme.subtitle1?.copyWith(
-                    color: AppColors.borderGrey, fontWeight: FontWeight.w600),
+                      color: AppColors.borderGrey,
+                      fontWeight: FontWeight.w600,
+                    ),
             border: const UnderlineInputBorder(
-                borderSide: BorderSide(color: AppColors.lightGrey)),
+              borderSide: BorderSide(color: AppColors.lightGrey),
+            ),
             errorBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.errorRed,

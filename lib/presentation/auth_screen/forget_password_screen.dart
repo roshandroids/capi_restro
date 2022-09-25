@@ -29,7 +29,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.goNamed(RoutePaths.landingRoute.routeName),
+          onPressed: () => context.pop(),
           icon: const Icon(
             Ionicons.chevron_back_outline,
             color: AppColors.iconBlack,
@@ -48,7 +48,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Forgot Password?',
@@ -71,7 +70,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               CustomTextField(
                 controller: _emailController,
                 hintText: 'Email',
-                validator: (value) => Validators.emailValidator(value),
+                validator: Validators.emailValidator,
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 30),
@@ -82,7 +81,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       color: AppColors.surfaceWhite,
                       fontWeight: FontWeight.w600,
                     ),
-                onTap: () => context.go(RoutePaths.verifytotpRoute.path),
+                onTap: () => context.push(RoutePaths.verifytotpRoute.path),
               ),
             ],
           ),

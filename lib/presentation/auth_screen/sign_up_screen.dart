@@ -35,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.go(RoutePaths.loginRoute.path),
+          onPressed: () => context.pop(),
           icon: const Icon(
             Ionicons.chevron_back_outline,
             color: AppColors.iconBlack,
@@ -54,7 +54,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 'Welcome to\nCapi Restaurant',
@@ -77,27 +76,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
               CustomTextField(
                 controller: _emailController,
                 hintText: 'Email',
-                validator: (value) => Validators.emailValidator(value),
+                validator: Validators.emailValidator,
                 keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
               ),
               const SizedBox(height: 15),
               CustomTextField(
                 controller: _passwordController,
                 hintText: 'Password',
                 obscureText: _showPassword,
-                validator: (value) => Validators.passwordValidator(value),
+                validator: Validators.passwordValidator,
                 suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _showPassword = !_showPassword;
-                      });
-                    },
-                    child: Icon(
-                      _showPassword
-                          ? Ionicons.eye_off_outline
-                          : Ionicons.eye_outline,
-                      color: AppColors.borderGrey,
-                    )),
+                  onTap: () {
+                    setState(() {
+                      _showPassword = !_showPassword;
+                    });
+                  },
+                  child: Icon(
+                    _showPassword
+                        ? Ionicons.eye_off_outline
+                        : Ionicons.eye_outline,
+                    color: AppColors.borderGrey,
+                  ),
+                ),
               ),
               const SizedBox(height: 25),
               CustomButton(
@@ -107,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: AppColors.surfaceWhite,
                       fontWeight: FontWeight.w600,
                     ),
+                // onTap: () => context.push(RoutePaths.bottomNavRoute.path),
               ),
               const SizedBox(height: 20),
               RichText(
@@ -126,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => context.go(RoutePaths.loginRoute.path),
+                        ..onTap = () => context.pop(),
                     ),
                   ],
                 ),

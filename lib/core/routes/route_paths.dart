@@ -27,6 +27,8 @@ class RoutePaths {
       AppRouteModel(routeName: 'topFoodie', path: '/topFoodie');
   static final AppRouteModel profileRoute =
       AppRouteModel(routeName: 'profile', path: '/profile');
+  static final AppRouteModel locationPickerRoute =
+      AppRouteModel(routeName: 'locationPicker', path: '/locationPicker');
   static final AppRouteModel errorRoute =
       AppRouteModel(routeName: 'error', path: '/error');
 }

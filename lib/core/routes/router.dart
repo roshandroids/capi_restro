@@ -114,7 +114,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           key: scaffoldKey,
           child: const RootScreen(
             selectedTab: Tabs.topFoodie,
-            child: TopFoodieScreen(),
+            child: LeaderboardScreen(),
           ),
         ),
       ),
@@ -127,6 +127,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             selectedTab: Tabs.profile,
             child: ProfileScreen(),
           ),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.locationPickerRoute.path,
+        name: RoutePaths.locationPickerRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const LocationPickerScreen(),
         ),
       ),
     ],

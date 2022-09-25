@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TopFoodieScreen extends StatelessWidget {
-  const TopFoodieScreen({super.key});
+class LeaderboardScreen extends StatelessWidget {
+  const LeaderboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

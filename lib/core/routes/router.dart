@@ -10,8 +10,17 @@ import 'package:go_router/go_router.dart';
 final goRouterProvider = Provider<GoRouter>((ref) {
   const scaffoldKey = ValueKey<String>('App scaffold');
   return GoRouter(
-    initialLocation: RoutePaths.landingRoute.path,
+    initialLocation: RoutePaths.splashRoute.path,
     routes: [
+      GoRoute(
+        path: RoutePaths.splashRoute.path,
+        name: RoutePaths.splashRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: const SplashScreen(),
+        ),
+        redirect: (_, __) => RoutePaths.landingRoute.path,
+      ),
       GoRoute(
         path: RoutePaths.landingRoute.path,
         name: RoutePaths.landingRoute.routeName,
@@ -59,6 +68,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           key: state.pageKey,
           child: const ChangePasswordScreen(),
         ),
+      ),
+      GoRoute(
+        path: RoutePaths.rootRoute.path,
+        name: RoutePaths.rootRoute.routeName,
+        redirect: (_, __) => RoutePaths.homeRoute.path,
       ),
       GoRoute(
         path: RoutePaths.homeRoute.path,

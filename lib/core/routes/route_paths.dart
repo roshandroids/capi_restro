@@ -1,6 +1,8 @@
 import 'package:capi_restro/core/routes/app_route_model.dart';
 
 class RoutePaths {
+  static final AppRouteModel splashRoute =
+      AppRouteModel(routeName: 'splashPage', path: '/splashPage');
   static final AppRouteModel landingRoute =
       AppRouteModel(routeName: 'landingPage', path: '/landingPage');
   static final AppRouteModel loginRoute =
@@ -13,6 +15,8 @@ class RoutePaths {
       AppRouteModel(routeName: 'verifytotp', path: '/verifytotp');
   static final AppRouteModel changePasswordRoute =
       AppRouteModel(routeName: 'changePassword', path: '/changePassword');
+  static final AppRouteModel rootRoute =
+      AppRouteModel(routeName: 'root', path: '/root');
   static final AppRouteModel homeRoute =
       AppRouteModel(routeName: 'home', path: '/home');
   static final AppRouteModel discoveryRoute =

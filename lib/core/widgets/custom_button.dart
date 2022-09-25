@@ -13,6 +13,8 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
     this.width,
     this.borderRadius,
+    this.boxShadow,
+    this.textColor,
   });
   final String title;
   final VoidCallback? onTap;
@@ -23,6 +25,8 @@ class CustomButton extends StatelessWidget {
   final bool isLoading;
   final double? width;
   final double? borderRadius;
+  final List<BoxShadow>? boxShadow;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +42,14 @@ class CustomButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: btnColor ?? AppColors.surfaceWhite,
           borderRadius: BorderRadius.circular(borderRadius ?? 4),
-          boxShadow: const [
-            BoxShadow(
-              offset: Offset(0, 1),
-              blurRadius: 10,
-              color: AppColors.borderGrey,
-            ),
-          ],
+          boxShadow: boxShadow ??
+              const [
+                BoxShadow(
+                  offset: Offset(0, 1),
+                  blurRadius: 10,
+                  color: AppColors.borderGrey,
+                ),
+              ],
         ),
         child: isLoading
             ? const CircularProgressIndicator(
@@ -55,7 +60,7 @@ class CustomButton extends StatelessWidget {
                 title,
                 style: titleStyle ??
                     Theme.of(context).textTheme.subtitle1?.copyWith(
-                          color: AppColors.primaryGreen,
+                          color: textColor ?? AppColors.primaryGreen,
                           fontWeight: FontWeight.w600,
                         ),
               ),

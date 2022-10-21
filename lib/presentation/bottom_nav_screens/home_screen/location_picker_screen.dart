@@ -1,5 +1,7 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/json/country_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 
@@ -72,10 +74,64 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                     fontWeight: FontWeight.w700,
                   ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
+            const Divider(
+              thickness: 1,
+              color: AppColors.dividerColor,
+            ),
+            const SizedBox(height: 10),
+            ListView.separated(
+              shrinkWrap: true,
+              itemCount: countryList.length,
+              separatorBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Divider(
+                  thickness: 1,
+                  color: AppColors.dividerColor,
+                ),
+              ),
+              itemBuilder: (context, index) {
+                return CountryTile(
+                  image: countryList[index]['image'] ?? '',
+                  name: countryList[index]['name'] ?? '',
+                );
+              },
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class CountryTile extends StatelessWidget {
+  const CountryTile({
+    super.key,
+    required this.name,
+    required this.image,
+  });
+  final String name;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(image),
+        const SizedBox(width: 20),
+        Text(
+          name,
+          style: Theme.of(context)
+              .textTheme
+              .subtitle1
+              ?.copyWith(fontWeight: FontWeight.w700),
+        ),
+        const Spacer(),
+        const Icon(
+          Icons.chevron_right,
+          color: AppColors.dividerColor,
+        ),
+      ],
     );
   }
 }

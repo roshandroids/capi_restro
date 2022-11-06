@@ -11,4 +11,12 @@ class Assets {
   static const String brazil = 'assets/svg/brazil.svg';
   static const String canada = 'assets/svg/canada.svg';
   static const String japan = 'assets/svg/japan.svg';
+
+  // discovery list
+  static const String nearBy = 'assets/svg/store.svg';
+  static const String desertsBakes = 'assets/svg/food.svg';
+  static const String diningOut = 'assets/svg/salad.svg';
+  static const String drinksNightlife = 'assets/svg/turkey.svg';
+  static const String cafes = 'assets/svg/tea.svg';
+  static const String takeAway = 'assets/svg/pizza.svg';
 }

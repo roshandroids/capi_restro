@@ -14,13 +14,19 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
+  late TextEditingController _repasswordController;
   late bool _showPassword;
+  late bool _showRePassword;
 
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _repasswordController = TextEditingController();
+
     _showPassword = true;
+    _showRePassword = true;
+
     super.initState();
   }
 
@@ -100,6 +106,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+              // const SizedBox(height: 15),
+              // CustomTextField(
+              //   controller: _repasswordController,
+              //   hintText: 'Re-enter Password',
+              //   obscureText: _showRePassword,
+              //   validator: (value) {
+              //     if (value != null && value != _passwordController.text) {
+              //       return 'Passwords does not match';
+              //     } else {
+              //       return null;
+              //     }
+              //   },
+              //   suffixIcon: GestureDetector(
+              //     onTap: () {
+              //       setState(() {
+              //         _showRePassword = !_showRePassword;
+              //       });
+              //     },
+              //     child: Icon(
+              //       _showRePassword
+              //           ? Ionicons.eye_off_outline
+              //           : Ionicons.eye_outline,
+              //       color: AppColors.borderGrey,
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 25),
               CustomButton(
                 title: 'Sign up',
@@ -144,6 +176,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _repasswordController.dispose();
     super.dispose();
   }
 }

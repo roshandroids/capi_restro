@@ -14,7 +14,7 @@ class BookmarkScreen extends StatelessWidget {
     return MaterialApp(
       // Remove the debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Bookmarks',
+      // title: 'Bookmarks',
       theme: ThemeData(primarySwatch: Colors.grey),
 
       home: const BookmarkPage(),
@@ -32,95 +32,105 @@ class BookmarkPage extends StatefulWidget {
 class _BookmarkPageState extends State<BookmarkPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.lightGrey,
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            pinned: true,
-            centerTitle: false,
-            backgroundColor: AppColors.surfaceWhite,
-            leading: const Icon(
-              Ionicons.ios_location,
-              color: AppColors.primaryGreen,
-              size: 30,
-            ),
-            title: Text(
-              'Bookmarks',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline4?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.iconBlack,
-                  ),
-            ),
-            bottom: AppBar(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.lightGrey,
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              pinned: true,
+              centerTitle: false,
               backgroundColor: AppColors.surfaceWhite,
-              title: Container(
-                width: double.infinity,
-                height: 40,
-                color: AppColors.lightGrey,
-                child: const Center(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
-                      hintText: 'Search for something',
-                      prefixIcon: Icon(Icons.search),
-
-                      // suffixIcon: Icon(Icons.camera_alt),
-                    ),
-                  ),
-                ),
+              leading: const Icon(
+                Ionicons.ios_location,
+                color: AppColors.primaryGreen,
+                size: 30,
               ),
-            ),
-          ),
-          // Other Sliver Widgets
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Container(
-                padding: const EdgeInsets.all(10),
-                // color: AppColors.lightGrey,
-                width: (MediaQuery.of(context).size.width ~/ 1.2).toDouble(),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        // ignore: avoid_print
-                        onTap: () => {print('Tapped in filter')},
-                        child: Text(
-                          '  Filter  ',
-                          style:
-                              Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                        ),
+              title: Text(
+                'Bookmark',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline5?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.iconBlack,
+                      fontFamily: 'Quicksand',
+                    ),
+              ),
+              bottom: AppBar(
+                backgroundColor: AppColors.surfaceWhite,
+                title: Container(
+                  width: double.infinity,
+                  height: 40,
+                  color: AppColors.lightGrey,
+                  child: const Center(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                        hintText: 'Search for something',
+                        prefixIcon: Icon(Icons.search),
+
+                        // suffixIcon: Icon(Icons.camera_alt),
                       ),
                     ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const ScrollPhysics(),
-                      itemCount: bookmarkList.length,
-                      itemBuilder: (context, index) {
-                        return BookmarkTile(
-                          id: bookmarkList[index]['id'] ?? '',
-                          image: bookmarkList[index]['image'] ?? '',
-                          name: bookmarkList[index]['name'] ?? '',
-                          place: bookmarkList[index]['place'] ?? '',
-                          starttime: bookmarkList[index]['starttime'] ?? '',
-                          endtime: bookmarkList[index]['endtime'] ?? '',
-                          rating: bookmarkList[index]['rating'] ?? '',
-                          type: bookmarkList[index]['type'] ?? '',
-                        );
-                      },
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ]),
-          ),
-        ],
+            ),
+            // Other Sliver Widgets
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
+                    top: 30,
+                    bottom: 5,
+                  ),
+                  // color: AppColors.lightGrey,
+                  // width: (MediaQuery.of(context).size.width ~/ 1.2).toDouble(),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          // ignore: avoid_print
+                          onTap: () => {print('Tapped in filter')},
+                          child: Text(
+                            'Filter',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w800,
+                                ),
+                          ),
+                        ),
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemCount: bookmarkList.length,
+                        itemBuilder: (context, index) {
+                          return BookmarkTile(
+                            id: bookmarkList[index]['id'] ?? '',
+                            image: bookmarkList[index]['image'] ?? '',
+                            name: bookmarkList[index]['name'] ?? '',
+                            place: bookmarkList[index]['place'] ?? '',
+                            starttime: bookmarkList[index]['starttime'] ?? '',
+                            endtime: bookmarkList[index]['endtime'] ?? '',
+                            rating: bookmarkList[index]['rating'] ?? '',
+                            type: bookmarkList[index]['type'] ?? '',
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -153,7 +163,18 @@ class BookmarkTile extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            leading: SvgPicture.asset(image),
+            visualDensity: VisualDensity(vertical: 3),
+            dense: true,
+            contentPadding: EdgeInsets.only(left: 10, right: 5),
+            leading: Container(
+              padding: const EdgeInsets.all(10),
+              // height: 500,
+
+              child: SvgPicture.asset(image),
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xff173143)),
+            ),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -192,7 +213,14 @@ class BookmarkTile extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(name)
+                Text(
+                  name,
+                  style: Theme.of(context).textTheme.headline6?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.iconBlack,
+                        fontFamily: 'Quicksand',
+                      ),
+                )
               ],
             ),
             subtitle: Row(

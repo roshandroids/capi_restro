@@ -29,8 +29,7 @@ class DiscoveryScreen extends StatelessWidget {
         ),
         title: Text(
           'Discovery',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline4?.copyWith(
+          style: Theme.of(context).textTheme.headline5?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: AppColors.iconBlack,
               ),

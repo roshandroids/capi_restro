@@ -10,6 +10,7 @@ class Validators {
     }
   }
 
+  /// [passwordValidator] validate the entered password, as well as confirm password
   static String? passwordValidator(String? value, {String? confirmValue}) {
     if (value == null || value.trim().isEmpty) {
       return 'Please enter password';

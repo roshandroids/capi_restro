@@ -106,6 +106,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+
+              //! TODO: verify logic for confirm password
               // const SizedBox(height: 15),
               // CustomTextField(
               //   controller: _repasswordController,

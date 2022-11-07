@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:capi_restro/core/core.dart';
-import 'package:flutter/gestures.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/discovery_screen/discovery_tile.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/discovery_screen/json/discover_list.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/discovery_screen/json/discover_list.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DiscoveryScreen extends StatelessWidget {
   const DiscoveryScreen({super.key});
@@ -37,13 +36,7 @@ class DiscoveryScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-        child:
-            // Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // children: [
-            // const SizedBox(height: 20),
-            GridView.builder(
-          // scrollDirection: Axis.vertical,
+        child: GridView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
           itemCount: discoveryList.length,
@@ -59,48 +52,6 @@ class DiscoveryScreen extends StatelessWidget {
         // ],
       ),
       // ),
-    );
-  }
-}
-
-class DiscoveryTile extends StatelessWidget {
-  const DiscoveryTile({
-    super.key,
-    required this.name,
-    required this.image,
-    required this.place,
-  });
-  final String name;
-  final String image;
-  final String place;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shadowColor: AppColors.borderGrey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          SvgPicture.asset(image),
-          const SizedBox(height: 20),
-          Text(
-            name,
-            style: Theme.of(context)
-                .textTheme
-                .subtitle1
-                ?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            '$place place',
-            style: Theme.of(context).textTheme.subtitle2?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.borderGrey,
-                ),
-          ),
-        ],
-      ),
     );
   }
 }

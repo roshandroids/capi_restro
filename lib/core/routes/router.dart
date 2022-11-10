@@ -1,6 +1,7 @@
 import 'package:capi_restro/application/application.dart';
 import 'package:capi_restro/core/routes/not_found_screen.dart';
 import 'package:capi_restro/core/routes/route_paths.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:capi_restro/presentation/pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -123,9 +124,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         name: RoutePaths.profileRoute.routeName,
         pageBuilder: (context, state) => FadeTransitionPage(
           key: scaffoldKey,
-          child: const RootScreen(
+          child: RootScreen(
             selectedTab: Tabs.profile,
-            child: ProfileScreen(),
+            child: ProfileScreen(
+              id: profileuserData[0]['id'] ?? '',
+              image: profileuserData[0]['image'] ?? '',
+              name: profileuserData[0]['name'] ?? '',
+              reviews: profileuserData[0]['reviews'] ?? '',
+              network: profileuserData[0]['network'] ?? '',
+              foodietype: profileuserData[0]['foodietype'] ?? '',
+              place: profileuserData[0]['place'] ?? '',
+              followers: profileuserData[0]['followers'] ?? '',
+              following: profileuserData[0]['following'] ?? '',
+            ),
           ),
         ),
       ),

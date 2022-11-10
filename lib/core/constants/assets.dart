@@ -12,7 +12,7 @@ class Assets {
   static const String canada = 'assets/svg/canada.svg';
   static const String japan = 'assets/svg/japan.svg';
 
-  // discovery list
+  /// discovery list images
   static const String nearBy = 'assets/svg/store.svg';
   static const String desertsBakes = 'assets/svg/cake.svg';
   static const String diningOut = 'assets/svg/salad.svg';
@@ -20,6 +20,10 @@ class Assets {
   static const String cafes = 'assets/svg/tea.svg';
   static const String takeAway = 'assets/svg/pizza.svg';
 
-  //leaderboard
+  /// leaderboard images
   static const String trophy = 'assets/svg/trophy.svg';
+
+  /// profile images
+  static const String networkicon = 'assets/svg/networkicon.svg';
+  static const String reviewicon = 'assets/svg/reviewicon.svg';
 }

@@ -26,4 +26,7 @@ class Assets {
   /// profile images
   static const String networkicon = 'assets/svg/networkicon.svg';
   static const String reviewicon = 'assets/svg/reviewicon.svg';
+
+  /// profile reviews images
+  static const String trophylevel = 'assets/svg/trophylevel.svg';
 }

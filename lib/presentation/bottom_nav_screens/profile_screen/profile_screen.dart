@@ -1,18 +1,7 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/profile_tile.dart';
 import 'package:flutter/material.dart';
-
-List<String> profileOptionList = [
-  'Manage Payment Options',
-  'Find Friends on Capi',
-  'More Settings',
-  'Sign Out',
-];
-List<IconData> icons = [
-  Icons.check_box,
-  Icons.person_add_alt_1_outlined,
-  Icons.settings_outlined,
-  Icons.logout_rounded
-];
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({
@@ -94,35 +83,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Column(
-                  children: [
-                    const Icon(Icons.person_outline),
-                    const Text('Network'),
-                    Text(widget.network)
-                  ],
+                GestureDetector(
+                  onTap: () => context.push(RoutePaths.networkscreenRoute.path),
+                  child: Column(
+                    children: [
+                      const Icon(Icons.person_outline),
+                      const Text('Network'),
+                      Text(widget.network)
+                    ],
+                  ),
                 ),
-                Column(
-                  children: [
-                    const Icon(Icons.star_border_outlined),
-                    const Text('My Review'),
-                    Text(widget.reviews)
-                  ],
+                GestureDetector(
+                  onTap: () => context.go('/reviewscreen'),
+                  child: Column(
+                    children: [
+                      const Icon(Icons.star_border_outlined),
+                      const Text('My Review'),
+                      Text(widget.reviews)
+                    ],
+                  ),
                 ),
-                Column(
-                  children: [
-                    Icon(
-                      Icons.emoji_events_outlined,
-                      color: foodietypeColor(widget.foodietype),
-                    ),
-                    const Text('My Level'),
-                    Text(
-                      (widget.foodietype == '1')
-                          ? 'Diamond'
-                          : (widget.foodietype == '2')
-                              ? 'Gold'
-                              : (widget.foodietype == '3' ? 'Silver' : 'None'),
-                    )
-                  ],
+                GestureDetector(
+                  onTap: () => context.go('/reviewscreen'),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.emoji_events_outlined,
+                        color: foodietypeColor(widget.foodietype),
+                      ),
+                      const Text('My Level'),
+                      Text(
+                        (widget.foodietype == '1')
+                            ? 'Diamond'
+                            : (widget.foodietype == '2')
+                                ? 'Gold'
+                                : (widget.foodietype == '3'
+                                    ? 'Silver'
+                                    : 'None'),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
@@ -143,59 +143,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-Color foodietypeColor(String? foodietype) {
-  return (foodietype == '1')
-      ? AppColors.primaryGreen
-      : (foodietype == '2')
-          ? Colors.lightGreen
-          : (foodietype == '3')
-              ? Colors.lightBlue
-              : AppColors.borderGrey;
-}
-
-class ProfileOptions extends StatelessWidget {
-  const ProfileOptions({
-    super.key,
-    // required this.name,
-    required this.index,
-  });
-  // final Object name;
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          visualDensity: const VisualDensity(vertical: -4),
-          dense: true,
-          leading: Icon(
-            icons[index],
-          ),
-          title: Text(
-            profileOptionList[index],
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall
-                ?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          trailing: const Icon(
-            Icons.arrow_forward_ios,
-            size: 15,
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Divider(
-            thickness: 1,
-            color: AppColors.lightGrey,
-          ),
-        ),
-      ],
     );
   }
 }

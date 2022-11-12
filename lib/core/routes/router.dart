@@ -2,6 +2,8 @@ import 'package:capi_restro/application/application.dart';
 import 'package:capi_restro/core/routes/not_found_screen.dart';
 import 'package:capi_restro/core/routes/route_paths.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/network_screen/network_screen.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/review_screen/review_screen.dart';
 import 'package:capi_restro/presentation/pages.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -136,6 +138,38 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               place: profileuserData[0]['place'] ?? '',
               followers: profileuserData[0]['followers'] ?? '',
               following: profileuserData[0]['following'] ?? '',
+            ),
+          ),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.networkscreenRoute.path,
+        name: RoutePaths.networkscreenRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: state.pageKey,
+          child: RootScreen(
+            selectedTab: Tabs.profile,
+            child: NetworkScreen(
+              followers: profileuserData[0]['followers'] ?? '',
+              following: profileuserData[0]['following'] ?? '',
+            ),
+          ),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.reviewscreenRoute.path,
+        name: RoutePaths.reviewscreenRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: scaffoldKey,
+          child: RootScreen(
+            selectedTab: Tabs.profile,
+            child: ReviewScreen(
+              reviews: profileuserData[0]['reviews'] ?? '',
+              comment: profileuserData[0]['comment'] ?? '',
+              photos: profileuserData[0]['photos'] ?? '',
+              followers: profileuserData[0]['followers'] ?? '',
+              following: profileuserData[0]['following'] ?? '',
+              foodietype: profileuserData[0]['foodietype'] ?? '',
             ),
           ),
         ),

@@ -10,6 +10,8 @@ final profileuserData = [
     'foodietype': '3',
     'place': 'New York City',
     'followers': '203',
-    'following': '400'
+    'following': '400',
+    'comment': '358',
+    'photos': '216',
   },
 ];

@@ -29,6 +29,10 @@ class RoutePaths {
       AppRouteModel(routeName: 'profile', path: '/profile');
   static final AppRouteModel locationPickerRoute =
       AppRouteModel(routeName: 'locationPicker', path: '/locationPicker');
+  static final AppRouteModel networkscreenRoute =
+      AppRouteModel(routeName: 'networkscreen', path: '/networkscreen');
+  static final AppRouteModel reviewscreenRoute =
+      AppRouteModel(routeName: 'reviewscreen', path: '/reviewscreen');
   static final AppRouteModel errorRoute =
       AppRouteModel(routeName: 'error', path: '/error');
 }

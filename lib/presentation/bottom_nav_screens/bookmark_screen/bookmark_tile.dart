@@ -92,6 +92,7 @@ class BookmarkTile extends StatelessWidget {
               children: [
                 Text(
                   place,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w400,
                         color: AppColors.borderGrey,

@@ -40,7 +40,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.pop(),
+          onPressed: () => context.go('/home'),
           icon: const Icon(
             Ionicons.arrow_back_sharp,
             color: AppColors.primaryGreen,
@@ -115,23 +115,26 @@ class CountryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(image),
-        const SizedBox(width: 20),
-        Text(
-          name,
-          style: Theme.of(context)
-              .textTheme
-              .subtitle1
-              ?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const Spacer(),
-        const Icon(
-          Icons.chevron_right,
-          color: AppColors.dividerColor,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () => context.go('/cityfoodsearchscreen'),
+      child: Row(
+        children: [
+          SvgPicture.asset(image),
+          const SizedBox(width: 20),
+          Text(
+            name,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.chevron_right,
+            color: AppColors.dividerColor,
+          ),
+        ],
+      ),
     );
   }
 }

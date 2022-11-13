@@ -1,4 +1,5 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/core/utils/foodietype_name.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -112,14 +113,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: foodietypeColor(widget.foodietype),
                       ),
                       const Text('My Level'),
-                      Text(
-                        (widget.foodietype == '1')
-                            ? 'Diamond'
-                            : (widget.foodietype == '2')
-                                ? 'Gold'
-                                : (widget.foodietype == '3'
-                                    ? 'Silver'
-                                    : 'None'),
+                      FoodietypeName(
+                        foodietype: widget.foodietype,
+                        // addtext: '',
                       )
                     ],
                   ),

@@ -1,6 +1,7 @@
 import 'package:capi_restro/application/application.dart';
 import 'package:capi_restro/core/routes/not_found_screen.dart';
 import 'package:capi_restro/core/routes/route_paths.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/city_search_screen.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/network_screen/network_screen.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/review_screen/review_screen.dart';
@@ -85,6 +86,17 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           child: const RootScreen(
             selectedTab: Tabs.home,
             child: HomeScreen(),
+          ),
+        ),
+      ),
+      GoRoute(
+        path: RoutePaths.cityfoodsearchscreenRoute.path,
+        name: RoutePaths.cityfoodsearchscreenRoute.routeName,
+        pageBuilder: (context, state) => FadeTransitionPage(
+          key: scaffoldKey,
+          child: const RootScreen(
+            selectedTab: Tabs.home,
+            child: CityFoodSearchScreen(),
           ),
         ),
       ),

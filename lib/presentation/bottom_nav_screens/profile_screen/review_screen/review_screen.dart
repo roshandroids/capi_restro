@@ -1,4 +1,5 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/core/utils/foodietype_name.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/review_screen/review_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -51,18 +52,13 @@ class ReviewScreen extends StatelessWidget {
                   const SizedBox(height: 40),
                   SvgPicture.asset(Assets.trophylevel),
                   const SizedBox(height: 20),
-                  Text(
-                    (foodietype == '1')
-                        ? 'Diamond Level'
-                        : (foodietype == '2')
-                            ? 'Gold Level'
-                            : (foodietype == '3')
-                                ? 'Silver Level'
-                                : 'No level',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  FoodietypeName(
+                    foodietype: foodietype,
+                    styles: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: AppColors.surfaceWhite,
                         ),
+                    addtext: ' level',
                   ),
                   const SizedBox(height: 40),
                 ],

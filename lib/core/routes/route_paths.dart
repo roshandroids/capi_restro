@@ -33,6 +33,10 @@ class RoutePaths {
       AppRouteModel(routeName: 'networkscreen', path: '/networkscreen');
   static final AppRouteModel reviewscreenRoute =
       AppRouteModel(routeName: 'reviewscreen', path: '/reviewscreen');
+  static final AppRouteModel cityfoodsearchscreenRoute = AppRouteModel(
+    routeName: 'cityfoodsearchscreen',
+    path: '/cityfoodsearchscreen',
+  );
   static final AppRouteModel errorRoute =
       AppRouteModel(routeName: 'error', path: '/error');
 }

@@ -1,4 +1,6 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/core/utils/foodietype_color.dart';
+import 'package:capi_restro/core/utils/foodietype_name.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardTile extends StatelessWidget {
@@ -61,25 +63,20 @@ class LeaderboardTile extends StatelessWidget {
                 Text('$review reviews, $photos photos'),
                 Row(
                   children: [
-                    Text(
-                      (foodietype == '1')
-                          ? 'Diamond Foodie'
-                          : (foodietype == '2')
-                              ? 'Gold Foodie'
-                              : (foodietype == '3')
-                                  ? 'Silver Foodie'
-                                  : 'None',
-                      style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                    FoodietypeName(
+                      foodietype: foodietype,
+                      styles: Theme.of(context).textTheme.subtitle2?.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: foodietypeColor(),
+                            color: foodietypeColor(foodietype),
                           ),
+                      addtext: ' Foodie',
                     ),
                     const Spacer(),
                     Text(
                       '# $foodietype',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: foodietypeColor(),
+                            color: foodietypeColor(foodietype),
                           ),
                     )
                   ],
@@ -90,15 +87,5 @@ class LeaderboardTile extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Color foodietypeColor() {
-    return (foodietype == '1')
-        ? AppColors.primaryGreen
-        : (foodietype == '2')
-            ? Colors.lightGreen
-            : (foodietype == '3')
-                ? Colors.lightBlue
-                : AppColors.borderGrey;
   }
 }

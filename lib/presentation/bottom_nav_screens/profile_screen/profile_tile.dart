@@ -13,15 +13,6 @@ List<IconData> icons = [
   Icons.settings_outlined,
   Icons.logout_rounded
 ];
-Color foodietypeColor(String? foodietype) {
-  return (foodietype == '1')
-      ? AppColors.primaryGreen
-      : (foodietype == '2')
-          ? Colors.lightGreen
-          : (foodietype == '3')
-              ? Colors.lightBlue
-              : AppColors.borderGrey;
-}
 
 class ProfileOptions extends StatelessWidget {
   const ProfileOptions({

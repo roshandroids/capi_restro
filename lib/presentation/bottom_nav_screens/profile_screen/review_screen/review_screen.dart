@@ -1,4 +1,5 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/core/utils/foodietype_color.dart';
 import 'package:capi_restro/core/utils/foodietype_name.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/review_screen/review_items.dart';
 import 'package:flutter/material.dart';

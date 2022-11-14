@@ -32,13 +32,3 @@ class ReviewPageItems extends StatelessWidget {
     );
   }
 }
-
-Color foodietypeColor(String? foodietype) {
-  return (foodietype == '1')
-      ? AppColors.primaryGreen
-      : (foodietype == '2')
-          ? Colors.lightGreen
-          : (foodietype == '3')
-              ? Colors.lightBlue
-              : AppColors.borderGrey;
-}

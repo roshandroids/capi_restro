@@ -1,14 +1,13 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class CollectionTile extends StatelessWidget {
   const CollectionTile({
     super.key,
-    required this.name,
-    required this.place,
+    required this.collectionlistdata,
   });
-  final String name;
-  final String place;
+  final CollectionListData collectionlistdata;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -37,13 +36,13 @@ class CollectionTile extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 20),
                 ),
                 Text(
-                  name,
+                  collectionlistdata.name,
                   style: Theme.of(context).textTheme.bodyText1?.copyWith(
                         color: AppColors.surfaceWhite,
                       ),
                 ),
                 Text(
-                  place,
+                  collectionlistdata.place,
                   style: Theme.of(context).textTheme.bodyText2?.copyWith(
                         color: AppColors.surfaceWhite,
                       ),

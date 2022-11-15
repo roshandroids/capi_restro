@@ -1,37 +1,17 @@
 import 'package:capi_restro/core/core.dart';
 import 'package:capi_restro/core/utils/foodietype_color.dart';
 import 'package:capi_restro/core/utils/foodietype_name.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ProfileScreen extends StatefulWidget {
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.reviews,
-    required this.network,
-    required this.followers,
-    required this.place,
-    required this.foodietype,
-    required this.following,
+    required this.profileUserData,
   });
-  final String id;
-  final String name;
-  final String image;
-  final String reviews;
-  final String network;
-  final String followers;
-  final String place;
-  final String foodietype;
-  final String following;
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
+  final ProfileUserData profileUserData;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,14 +43,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              widget.name,
+              profileUserData.name,
               style: Theme.of(context).textTheme.headline6?.copyWith(
                     fontWeight: FontWeight.w900,
                   ),
             ),
             const SizedBox(height: 5),
             Text(
-              widget.place,
+              profileUserData.place ?? '',
               style: Theme.of(context).textTheme.subtitle1?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: AppColors.borderGrey,
@@ -91,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       const Icon(Icons.person_outline),
                       const Text('Network'),
-                      Text(widget.network)
+                      Text(profileUserData.network ?? '')
                     ],
                   ),
                 ),
@@ -101,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       const Icon(Icons.star_border_outlined),
                       const Text('My Review'),
-                      Text(widget.reviews)
+                      Text(profileUserData.reviews ?? '')
                     ],
                   ),
                 ),
@@ -111,11 +91,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Icon(
                         Icons.emoji_events_outlined,
-                        color: foodietypeColor(widget.foodietype),
+                        color: foodietypeColor(profileUserData.foodietype),
                       ),
                       const Text('My Level'),
                       FoodietypeName(
-                        foodietype: widget.foodietype,
+                        foodietype: profileUserData.foodietype ?? '',
                         // addtext: '',
                       )
                     ],

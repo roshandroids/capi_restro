@@ -85,14 +85,8 @@ class BookmarkScreen extends StatelessWidget {
                         itemCount: bookmarkList.length,
                         itemBuilder: (context, index) {
                           return BookmarkTile(
-                            id: bookmarkList[index]['id'] ?? '',
-                            image: bookmarkList[index]['image'] ?? '',
-                            name: bookmarkList[index]['name'] ?? '',
-                            place: bookmarkList[index]['place'] ?? '',
-                            starttime: bookmarkList[index]['starttime'] ?? '',
-                            endtime: bookmarkList[index]['endtime'] ?? '',
-                            rating: bookmarkList[index]['rating'] ?? '',
-                            type: bookmarkList[index]['type'] ?? '',
+                            bookmarklistdata:
+                                BookmarkListData.fromJson(bookmarkList[index]),
                           );
                         },
                       ),

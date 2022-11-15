@@ -1,8 +1,31 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'legendary_food_list.freezed.dart';
+part 'legendary_food_list.g.dart';
+
+@freezed
+class LegendaryFoodListData with _$LegendaryFoodListData {
+  const factory LegendaryFoodListData({
+    required int id,
+    required String name,
+    @Default('http/roshan.com') String image,
+    String? rating,
+    String? share,
+    String? photo,
+    String? bookmark,
+    String? review,
+    String? place,
+    String? starttime,
+    String? endtime,
+    String? type,
+  }) = _LegendaryFoodListData;
+  factory LegendaryFoodListData.fromJson(Map<String, dynamic> json) =>
+      _$LegendaryFoodListDataFromJson(json);
+}
 
 final legendaryfoodList = [
   {
-    'id': '1',
+    'id': 1,
     'name': 'Lombar Pizza',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -16,7 +39,7 @@ final legendaryfoodList = [
     'type': 'Pizza, Italian'
   },
   {
-    'id': '2',
+    'id': 2,
     'name': 'Sushi Bar',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -30,7 +53,7 @@ final legendaryfoodList = [
     'type': 'Sushi, Japan'
   },
   {
-    'id': '3',
+    'id': 3,
     'name': 'Lombar Pizza',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -44,7 +67,7 @@ final legendaryfoodList = [
     'type': 'Pizza, Italian'
   },
   {
-    'id': '4',
+    'id': 4,
     'name': 'Sushi Bar',
     'image': Assets.nearBy,
     'rating': '4.8',

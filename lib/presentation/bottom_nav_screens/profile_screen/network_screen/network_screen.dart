@@ -1,18 +1,16 @@
 import 'package:capi_restro/core/core.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/leaderboard_screen/json/leaderboard_list.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/leaderboard_screen/leaderboard_tile.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class NetworkScreen extends StatefulWidget {
   const NetworkScreen({
     super.key,
-    required this.followers,
-    required this.following,
+    required this.profileUserData,
   });
-
-  final String followers;
-  final String following;
+  final ProfileUserData profileUserData;
 
   @override
   State<NetworkScreen> createState() => _NetworkScreenState();
@@ -49,7 +47,8 @@ class _NetworkScreenState extends State<NetworkScreen>
           fontWeight: FontWeight.w400,
           color: AppColors.borderGrey,
         );
-    final network = int.parse(widget.followers) + int.parse(widget.following);
+    final network = int.parse(widget.profileUserData.followers ?? '0') +
+        int.parse(widget.profileUserData.following ?? '0');
     return SafeArea(
       child: DefaultTabController(
         length: 2,
@@ -105,7 +104,7 @@ class _NetworkScreenState extends State<NetworkScreen>
                         style: title,
                       ),
                       Text(
-                        widget.followers,
+                        widget.profileUserData.followers ?? '',
                         style: subtitle,
                       )
                     ],
@@ -122,7 +121,7 @@ class _NetworkScreenState extends State<NetworkScreen>
                         style: title,
                       ),
                       Text(
-                        widget.following,
+                        widget.profileUserData.following ?? '',
                         style: subtitle,
                       )
                     ],
@@ -140,13 +139,8 @@ class _NetworkScreenState extends State<NetworkScreen>
                   itemCount: reviewList.length,
                   itemBuilder: (context, index) {
                     return LeaderboardTile(
-                      id: reviewList[index]['id'] ?? '',
-                      image: reviewList[index]['image'] ?? '',
-                      name: reviewList[index]['name'] ?? '',
-                      review: reviewList[index]['review'] ?? '',
-                      photos: reviewList[index]['photos'] ?? '',
-                      foodietype: reviewList[index]['foodietype'] ?? '',
-                      followed: reviewList[index]['followed'] ?? '',
+                      reviewlistdata:
+                          ReviewListData.fromJson(reviewList[index]),
                     );
                   },
                 ),

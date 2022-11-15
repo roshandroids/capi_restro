@@ -1,13 +1,14 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/brand/brand_outlet_list.dart';
 import 'package:flutter/material.dart';
 
 class PopularBrandTile extends StatelessWidget {
   const PopularBrandTile({
     super.key,
-    required this.outlets,
+    required this.brandlistdata,
     required this.color,
   });
-  final String outlets;
+  final BrandListData brandlistdata;
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class PopularBrandTile extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             child: Text(
-              '$outlets outlets',
+              '${brandlistdata.outlets} outlets',
               style: Theme.of(context).textTheme.bodyText1?.copyWith(
                     color: AppColors.surfaceWhite,
                   ),

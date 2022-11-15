@@ -1,13 +1,14 @@
 import 'package:capi_restro/core/core.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/brand_outlet_list.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/collection.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/cuisine_list.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/legendary_food_list.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/trending_food_list.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/brand/brand_outlet_list.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/collection/collection.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/cuisine/cuisine_list.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/legendary/legendary_food_list.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/trendingFood/trending_food_list.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/collection_tile.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/cuisine_tile.dart';
-import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/legendary_tile.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/legendary_food_tile.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/popular_brand_tile.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/tiles/trending_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
@@ -160,10 +161,10 @@ class CityFoodSearchScreen extends StatelessWidget {
                             width: 10,
                           ),
                           itemBuilder: (context, index) => LegendaryFood(
-                            image: legendaryfoodList[index]['image'] ?? '',
-                            name: legendaryfoodList[index]['name'] ?? '',
-                            place: legendaryfoodList[index]['place'] ?? '',
-                            type: legendaryfoodList[index]['type'] ?? '',
+                            legendaryfoodlistdata:
+                                LegendaryFoodListData.fromJson(
+                              legendaryfoodList[index],
+                            ),
                           ),
                         ),
                       ),
@@ -207,11 +208,10 @@ class CityFoodSearchScreen extends StatelessWidget {
                           separatorBuilder: (context, index) => const SizedBox(
                             width: 10,
                           ),
-                          itemBuilder: (context, index) => LegendaryFood(
-                            image: trendingfoodlist[index]['image'] ?? '',
-                            name: trendingfoodlist[index]['name'] ?? '',
-                            place: trendingfoodlist[index]['place'] ?? '',
-                            type: trendingfoodlist[index]['type'] ?? '',
+                          itemBuilder: (context, index) => TrendingFood(
+                            trendingfoodlistdata: TrendingFoodListData.fromJson(
+                              trendingfoodlist[index],
+                            ),
                           ),
                         ),
                       ),
@@ -256,8 +256,9 @@ class CityFoodSearchScreen extends StatelessWidget {
                             width: 10,
                           ),
                           itemBuilder: (context, index) => CollectionTile(
-                            name: collectionlist[index]['name'] ?? '',
-                            place: collectionlist[index]['place'] ?? '',
+                            collectionlistdata: CollectionListData.fromJson(
+                              collectionlist[index],
+                            ),
                           ),
                         ),
                       ),
@@ -298,7 +299,7 @@ class CityFoodSearchScreen extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           physics: const ScrollPhysics(),
-                          itemCount: collectionlist.length,
+                          itemCount: cuisinelist.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -307,7 +308,8 @@ class CityFoodSearchScreen extends StatelessWidget {
                             childAspectRatio: 0.5,
                           ),
                           itemBuilder: (context, index) => CuisineTile(
-                            name: cuisinelist[index]['name'] ?? '',
+                            cuisinelistdata:
+                                CuisineListData.fromJson(cuisinelist[index]),
                             color: color[index],
                           ),
                         ),
@@ -353,7 +355,8 @@ class CityFoodSearchScreen extends StatelessWidget {
                             width: 10,
                           ),
                           itemBuilder: (context, index) => PopularBrandTile(
-                            outlets: brandlist[index]['outlets'] ?? '',
+                            brandlistdata:
+                                BrandListData.fromJson(brandlist[index]),
                             color: brandcolor[index],
                           ),
                         ),

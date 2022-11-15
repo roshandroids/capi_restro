@@ -141,15 +141,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           child: RootScreen(
             selectedTab: Tabs.profile,
             child: ProfileScreen(
-              id: profileuserData[0]['id'] ?? '',
-              image: profileuserData[0]['image'] ?? '',
-              name: profileuserData[0]['name'] ?? '',
-              reviews: profileuserData[0]['reviews'] ?? '',
-              network: profileuserData[0]['network'] ?? '',
-              foodietype: profileuserData[0]['foodietype'] ?? '',
-              place: profileuserData[0]['place'] ?? '',
-              followers: profileuserData[0]['followers'] ?? '',
-              following: profileuserData[0]['following'] ?? '',
+              profileUserData: ProfileUserData.fromJson(profileuserData),
             ),
           ),
         ),
@@ -162,8 +154,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           child: RootScreen(
             selectedTab: Tabs.profile,
             child: NetworkScreen(
-              followers: profileuserData[0]['followers'] ?? '',
-              following: profileuserData[0]['following'] ?? '',
+              profileUserData: ProfileUserData.fromJson(profileuserData),
             ),
           ),
         ),
@@ -176,12 +167,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           child: RootScreen(
             selectedTab: Tabs.profile,
             child: ReviewScreen(
-              reviews: profileuserData[0]['reviews'] ?? '',
-              comment: profileuserData[0]['comment'] ?? '',
-              photos: profileuserData[0]['photos'] ?? '',
-              followers: profileuserData[0]['followers'] ?? '',
-              following: profileuserData[0]['following'] ?? '',
-              foodietype: profileuserData[0]['foodietype'] ?? '',
+              profileUserData: ProfileUserData.fromJson(profileuserData),
             ),
           ),
         ),

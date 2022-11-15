@@ -121,13 +121,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
                   itemCount: reviewList.length,
                   itemBuilder: (context, index) {
                     return LeaderboardTile(
-                      id: reviewList[index]['id'] ?? '',
-                      image: reviewList[index]['image'] ?? '',
-                      name: reviewList[index]['name'] ?? '',
-                      review: reviewList[index]['review'] ?? '',
-                      photos: reviewList[index]['photos'] ?? '',
-                      foodietype: reviewList[index]['foodietype'] ?? '',
-                      followed: reviewList[index]['followed'] ?? '',
+                      reviewlistdata:
+                          ReviewListData.fromJson(reviewList[index]),
                     );
                   },
                 ),

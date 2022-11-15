@@ -1,6 +1,7 @@
 import 'package:capi_restro/core/core.dart';
 import 'package:capi_restro/core/utils/foodietype_color.dart';
 import 'package:capi_restro/core/utils/foodietype_name.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/review_screen/review_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,20 +11,9 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 class ReviewScreen extends StatelessWidget {
   const ReviewScreen({
     super.key,
-    required this.followers,
-    required this.following,
-    required this.reviews,
-    required this.comment,
-    required this.photos,
-    required this.foodietype,
+    required this.profileUserData,
   });
-
-  final String followers;
-  final String following;
-  final String reviews;
-  final String comment;
-  final String photos;
-  final String foodietype;
+  final ProfileUserData profileUserData;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +23,7 @@ class ReviewScreen extends StatelessWidget {
         child: Column(
           children: [
             ColoredBox(
-              color: foodietypeColor(foodietype),
+              color: foodietypeColor(profileUserData.foodietype ?? ''),
               child: Column(
                 children: [
                   Row(
@@ -54,7 +44,7 @@ class ReviewScreen extends StatelessWidget {
                   SvgPicture.asset(Assets.trophylevel),
                   const SizedBox(height: 20),
                   FoodietypeName(
-                    foodietype: foodietype,
+                    foodietype: profileUserData.foodietype ?? '',
                     styles: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: AppColors.surfaceWhite,
@@ -76,12 +66,22 @@ class ReviewScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ReviewPageItems(items: reviews, text: 'Reviews'),
-                ReviewPageItems(items: comment, text: 'Comments'),
-                ReviewPageItems(items: photos, text: 'Photos'),
                 ReviewPageItems(
-                  items:
-                      (int.parse(followers) + int.parse(following)).toString(),
+                  items: profileUserData.reviews ?? '',
+                  text: 'Reviews',
+                ),
+                ReviewPageItems(
+                  items: profileUserData.comment ?? '',
+                  text: 'Comments',
+                ),
+                ReviewPageItems(
+                  items: profileUserData.photos ?? '',
+                  text: 'Photos',
+                ),
+                ReviewPageItems(
+                  items: (int.parse(profileUserData.followers ?? '') +
+                          int.parse(profileUserData.following ?? ''))
+                      .toString(),
                   text: 'Followers',
                 )
               ],

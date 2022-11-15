@@ -1,13 +1,14 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/cuisine/cuisine_list.dart';
 import 'package:flutter/material.dart';
 
 class CuisineTile extends StatelessWidget {
   const CuisineTile({
     super.key,
-    required this.name,
+    required this.cuisinelistdata,
     required this.color,
   });
-  final String name;
+  final CuisineListData cuisinelistdata;
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CuisineTile extends StatelessWidget {
         color: color,
       ),
       child: Text(
-        name,
+        cuisinelistdata.name,
         style: Theme.of(context).textTheme.bodyText1?.copyWith(
               color: AppColors.surfaceWhite,
             ),

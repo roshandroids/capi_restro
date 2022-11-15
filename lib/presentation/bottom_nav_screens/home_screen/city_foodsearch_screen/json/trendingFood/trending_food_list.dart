@@ -1,8 +1,30 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'trending_food_list.freezed.dart';
+part 'trending_food_list.g.dart';
+
+@freezed
+class TrendingFoodListData with _$TrendingFoodListData {
+  const factory TrendingFoodListData({
+    required int id,
+    required String name,
+    @Default('http/roshan.com') String image,
+    String? rating,
+    String? photo,
+    String? bookmark,
+    String? review,
+    String? place,
+    String? starttime,
+    String? endtime,
+    String? type,
+  }) = _TrendingFoodListData;
+  factory TrendingFoodListData.fromJson(Map<String, dynamic> json) =>
+      _$TrendingFoodListDataFromJson(json);
+}
 
 final trendingfoodlist = [
   {
-    'id': '1',
+    'id': 1,
     'name': 'Seefood Lee',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -16,7 +38,7 @@ final trendingfoodlist = [
     'type': 'Seefood, Spain'
   },
   {
-    'id': '2',
+    'id': 2,
     'name': 'Egg Tomato',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -30,7 +52,7 @@ final trendingfoodlist = [
     'type': 'Egg, Italian'
   },
   {
-    'id': '3',
+    'id': 3,
     'name': 'Seefood Lee',
     'image': Assets.nearBy,
     'rating': '4.8',
@@ -44,7 +66,7 @@ final trendingfoodlist = [
     'type': 'Seefood, Spain'
   },
   {
-    'id': '4',
+    'id': 4,
     'name': 'Egg Tomato',
     'image': Assets.nearBy,
     'rating': '4.8',

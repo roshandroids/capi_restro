@@ -1,27 +1,14 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/bookmark_screen/json/bookmark_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BookmarkTile extends StatelessWidget {
   const BookmarkTile({
     super.key,
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.place,
-    required this.starttime,
-    required this.endtime,
-    required this.rating,
-    required this.type,
+    required this.bookmarklistdata,
   });
-  final String id;
-  final String name;
-  final String image;
-  final String place;
-  final String starttime;
-  final String endtime;
-  final String rating;
-  final String type;
+  final BookmarkListData bookmarklistdata;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +25,7 @@ class BookmarkTile extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: Color(0xff173143),
               ),
-              child: SvgPicture.asset(image),
+              child: SvgPicture.asset(bookmarklistdata.image),
             ),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +33,7 @@ class BookmarkTile extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '$starttime to $endtime',
+                      '${bookmarklistdata.starttime} to ${bookmarklistdata.endtime}',
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.w400,
                             color: AppColors.borderGrey,
@@ -56,11 +43,11 @@ class BookmarkTile extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: ((int.parse(id)).isOdd)
+                        color: ((bookmarklistdata.id).isOdd)
                             ? AppColors.primaryGreen
                             : AppColors.errorRed,
                         border: Border.all(
-                          color: ((int.parse(id)).isOdd)
+                          color: ((bookmarklistdata.id).isOdd)
                               ? AppColors.primaryGreen
                               : AppColors.errorRed,
                           width: 0.1,
@@ -69,7 +56,7 @@ class BookmarkTile extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(10)),
                       ),
                       child: Text(
-                        rating,
+                        bookmarklistdata.rating ?? '',
                         style: Theme.of(context).textTheme.subtitle2?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: AppColors.surfaceWhite,
@@ -79,7 +66,7 @@ class BookmarkTile extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  name,
+                  bookmarklistdata.name,
                   style: Theme.of(context).textTheme.headline6?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppColors.iconBlack,
@@ -91,7 +78,7 @@ class BookmarkTile extends StatelessWidget {
             subtitle: Row(
               children: [
                 Text(
-                  place,
+                  bookmarklistdata.place ?? '',
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w400,

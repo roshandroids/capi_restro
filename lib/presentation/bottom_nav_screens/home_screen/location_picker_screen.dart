@@ -92,8 +92,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
               ),
               itemBuilder: (context, index) {
                 return CountryTile(
-                  image: countryList[index]['image'] ?? '',
-                  name: countryList[index]['name'] ?? '',
+                  countrylistdata: CountryListData.fromJson(countryList[index]),
                 );
               },
             ),
@@ -107,11 +106,9 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
 class CountryTile extends StatelessWidget {
   const CountryTile({
     super.key,
-    required this.name,
-    required this.image,
+    required this.countrylistdata,
   });
-  final String name;
-  final String image;
+  final CountryListData countrylistdata;
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +116,10 @@ class CountryTile extends StatelessWidget {
       onTap: () => context.go('/cityfoodsearchscreen'),
       child: Row(
         children: [
-          SvgPicture.asset(image),
+          SvgPicture.asset(countrylistdata.image),
           const SizedBox(width: 20),
           Text(
-            name,
+            countrylistdata.name,
             style: Theme.of(context)
                 .textTheme
                 .subtitle1

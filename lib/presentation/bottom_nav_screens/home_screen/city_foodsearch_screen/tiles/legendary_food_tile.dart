@@ -1,19 +1,14 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/home_screen/city_foodsearch_screen/json/legendary/legendary_food_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LegendaryFood extends StatelessWidget {
   const LegendaryFood({
     super.key,
-    required this.image,
-    required this.name,
-    required this.place,
-    required this.type,
+    required this.legendaryfoodlistdata,
   });
-  final String image;
-  final String name;
-  final String place;
-  final String type;
+  final LegendaryFoodListData legendaryfoodlistdata;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -43,17 +38,17 @@ class LegendaryFood extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  legendaryfoodlistdata.name,
                   style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         fontWeight: FontWeight.w700,
                       ),
                 ),
                 Text(
-                  place,
+                  legendaryfoodlistdata.place ?? '',
                   style: const TextStyle(color: AppColors.borderGrey),
                 ),
                 Text(
-                  type,
+                  legendaryfoodlistdata.type ?? '',
                   style: const TextStyle(color: AppColors.borderGrey),
                 )
               ],

@@ -1,17 +1,14 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/discovery_screen/json/discover_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DiscoveryTile extends StatelessWidget {
   const DiscoveryTile({
     super.key,
-    required this.name,
-    required this.image,
-    required this.place,
+    required this.discoverlistdata,
   });
-  final String name;
-  final String image;
-  final String place;
+  final DiscoverListData discoverlistdata;
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +18,10 @@ class DiscoveryTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 20),
-          SvgPicture.asset(image),
+          SvgPicture.asset(discoverlistdata.image),
           const SizedBox(height: 20),
           Text(
-            name,
+            discoverlistdata.name,
             style: Theme.of(context)
                 .textTheme
                 .subtitle1
@@ -32,7 +29,7 @@ class DiscoveryTile extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            '$place place',
+            '${discoverlistdata.place} place',
             style: Theme.of(context).textTheme.subtitle2?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: AppColors.borderGrey,

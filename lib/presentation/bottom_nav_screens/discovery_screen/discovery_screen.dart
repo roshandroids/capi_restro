@@ -44,9 +44,7 @@ class DiscoveryScreen extends StatelessWidget {
             crossAxisCount: MediaQuery.of(context).size.width ~/ 155,
           ),
           itemBuilder: (context, index) => DiscoveryTile(
-            image: discoveryList[index]['image'] ?? '',
-            name: discoveryList[index]['name'] ?? '',
-            place: discoveryList[index]['place'] ?? '',
+            discoverlistdata: DiscoverListData.fromJson(discoveryList[index]),
           ),
         ),
         // ],

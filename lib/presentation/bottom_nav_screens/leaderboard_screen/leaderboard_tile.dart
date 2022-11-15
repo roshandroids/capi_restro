@@ -1,24 +1,15 @@
 import 'package:capi_restro/core/core.dart';
+import 'package:capi_restro/core/utils/foodietype_color.dart';
+import 'package:capi_restro/core/utils/foodietype_name.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/leaderboard_screen/json/leaderboard_list.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardTile extends StatelessWidget {
   const LeaderboardTile({
     super.key,
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.review,
-    required this.photos,
-    required this.foodietype,
-    required this.followed,
+    required this.reviewlistdata,
   });
-  final String id;
-  final String name;
-  final String image;
-  final String review;
-  final String photos;
-  final String foodietype;
-  final String followed;
+  final ReviewListData reviewlistdata;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +22,14 @@ class LeaderboardTile extends StatelessWidget {
             ),
             title: Row(
               children: [
-                Text(name),
+                Text(reviewlistdata.name),
                 const Spacer(),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    color:
-                        (followed == 'false') ? AppColors.primaryGreen : null,
+                    color: (reviewlistdata.followed == 'false')
+                        ? AppColors.primaryGreen
+                        : null,
                     border: Border.all(
                       color: AppColors.primaryGreen,
                     ),
@@ -47,7 +39,7 @@ class LeaderboardTile extends StatelessWidget {
                     'Follow',
                     style: Theme.of(context).textTheme.subtitle2?.copyWith(
                           fontWeight: FontWeight.w400,
-                          color: (followed == 'false')
+                          color: (reviewlistdata.followed == 'false')
                               ? Colors.white
                               : AppColors.primaryGreen,
                         ),
@@ -58,28 +50,29 @@ class LeaderboardTile extends StatelessWidget {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('$review reviews, $photos photos'),
+                Text(
+                  '${reviewlistdata.review} reviews, ${reviewlistdata.photos} photos',
+                ),
                 Row(
                   children: [
-                    Text(
-                      (foodietype == '1')
-                          ? 'Diamond Foodie'
-                          : (foodietype == '2')
-                              ? 'Gold Foodie'
-                              : (foodietype == '3')
-                                  ? 'Silver Foodie'
-                                  : 'None',
-                      style: Theme.of(context).textTheme.subtitle2?.copyWith(
+                    FoodietypeName(
+                      foodietype: reviewlistdata.foodietype ?? '',
+                      styles: Theme.of(context).textTheme.subtitle2?.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: foodietypeColor(),
+                            color: foodietypeColor(
+                              reviewlistdata.foodietype ?? '1',
+                            ),
                           ),
+                      addtext: ' Foodie',
                     ),
                     const Spacer(),
                     Text(
-                      '# $foodietype',
+                      '# ${reviewlistdata.foodietype}',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: foodietypeColor(),
+                            color: foodietypeColor(
+                              reviewlistdata.foodietype ?? '',
+                            ),
                           ),
                     )
                   ],
@@ -90,15 +83,5 @@ class LeaderboardTile extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Color foodietypeColor() {
-    return (foodietype == '1')
-        ? AppColors.primaryGreen
-        : (foodietype == '2')
-            ? Colors.lightGreen
-            : (foodietype == '3')
-                ? Colors.lightBlue
-                : AppColors.borderGrey;
   }
 }

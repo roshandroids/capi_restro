@@ -40,7 +40,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
           splashColor: AppColors.transparent,
           focusColor: AppColors.transparent,
           highlightColor: AppColors.transparent,
-          onPressed: () => context.pop(),
+          onPressed: () => context.go('/home'),
           icon: const Icon(
             Ionicons.arrow_back_sharp,
             color: AppColors.primaryGreen,
@@ -92,8 +92,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
               ),
               itemBuilder: (context, index) {
                 return CountryTile(
-                  image: countryList[index]['image'] ?? '',
-                  name: countryList[index]['name'] ?? '',
+                  countrylistdata: CountryListData.fromJson(countryList[index]),
                 );
               },
             ),
@@ -107,31 +106,32 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
 class CountryTile extends StatelessWidget {
   const CountryTile({
     super.key,
-    required this.name,
-    required this.image,
+    required this.countrylistdata,
   });
-  final String name;
-  final String image;
+  final CountryListData countrylistdata;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SvgPicture.asset(image),
-        const SizedBox(width: 20),
-        Text(
-          name,
-          style: Theme.of(context)
-              .textTheme
-              .subtitle1
-              ?.copyWith(fontWeight: FontWeight.w700),
-        ),
-        const Spacer(),
-        const Icon(
-          Icons.chevron_right,
-          color: AppColors.dividerColor,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () => context.go('/cityfoodsearchscreen'),
+      child: Row(
+        children: [
+          SvgPicture.asset(countrylistdata.image),
+          const SizedBox(width: 20),
+          Text(
+            countrylistdata.name,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.chevron_right,
+            color: AppColors.dividerColor,
+          ),
+        ],
+      ),
     );
   }
 }

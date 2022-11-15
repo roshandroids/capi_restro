@@ -1,17 +1,22 @@
 import 'package:capi_restro/core/core.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/leaderboard_screen/json/leaderboard_list.dart';
 import 'package:capi_restro/presentation/bottom_nav_screens/leaderboard_screen/leaderboard_tile.dart';
+import 'package:capi_restro/presentation/bottom_nav_screens/profile_screen/json/profile_user_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
-class LeaderboardScreen extends StatefulWidget {
-  const LeaderboardScreen({super.key});
+class NetworkScreen extends StatefulWidget {
+  const NetworkScreen({
+    super.key,
+    required this.profileUserData,
+  });
+  final ProfileUserData profileUserData;
 
   @override
-  State<LeaderboardScreen> createState() => _LeaderboardScreenState();
+  State<NetworkScreen> createState() => _NetworkScreenState();
 }
 
-class _LeaderboardScreenState extends State<LeaderboardScreen>
+class _NetworkScreenState extends State<NetworkScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
 
@@ -22,7 +27,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
   @override
   void initState() {
     super.initState();
-    controller = TabController(length: 3, vsync: this);
+    controller = TabController(length: 2, vsync: this);
     controller.addListener(_handleTabSelection);
   }
 
@@ -42,24 +47,45 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
           fontWeight: FontWeight.w400,
           color: AppColors.borderGrey,
         );
+    final network = int.parse(widget.profileUserData.followers ?? '0') +
+        int.parse(widget.profileUserData.following ?? '0');
     return SafeArea(
       child: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           backgroundColor: AppColors.lightGrey,
           appBar: AppBar(
             backgroundColor: AppColors.surfaceWhite,
-            leading: SvgPicture.asset(
-              Assets.trophy,
-              fit: BoxFit.scaleDown,
+            leading: GestureDetector(
+              onTap: () => context.go('/profile'),
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
             ),
-            title: Text(
-              'Top Foodies',
-              style: Theme.of(context).textTheme.headline5?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.iconBlack,
-                    fontFamily: 'Quicksand',
-                  ),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Network',
+                  style: Theme.of(context).textTheme.headline5?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.iconBlack,
+                        fontFamily: 'Quicksand',
+                      ),
+                ),
+                Text(
+                  network.toString(),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.borderGrey,
+                        fontFamily: 'Quicksand',
+                      ),
+                ),
+              ],
             ),
             bottom: TabBar(
               // controller: controller,
@@ -70,12 +96,15 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
                 Tab(
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Text(
-                        'Review',
+                        'Followers',
                         style: title,
                       ),
                       Text(
-                        '(Top 50)',
+                        widget.profileUserData.followers ?? '',
                         style: subtitle,
                       )
                     ],
@@ -84,31 +113,20 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
                 Tab(
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 8,
+                      ),
                       Text(
-                        'Photos',
+                        'Following',
                         style: title,
                       ),
                       Text(
-                        '(Top 50)',
+                        widget.profileUserData.following ?? '',
                         style: subtitle,
                       )
                     ],
                   ),
                 ),
-                Tab(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Blogger',
-                        style: title,
-                      ),
-                      Text(
-                        '(Top 30)',
-                        style: subtitle,
-                      )
-                    ],
-                  ),
-                )
               ],
             ),
           ),
@@ -127,8 +145,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen>
                   },
                 ),
               ),
-              const Text('Tab'),
-              const Text('Tab 3')
+              const Text('Tab')
             ],
           ),
         ),
